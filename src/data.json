@@ -1,0 +1,52 @@
+{
+  "house": [
+    {
+      "title": "Palm House",
+      "location": "2699 Green valey, Highland lake, FL",
+      "price": 2095,
+      "beds": 3,
+      "bathrooms": 2,
+      "length": 4,
+      "width": 7,
+      "popular": true,
+      "image": "/assets/images/house1.jpeg",
+      "type": "hotel"
+    },
+    {
+      "title": "Beverly Springfields",
+      "location": "2818 Lake sevilla, TX",
+      "price": 4105,
+      "beds": 4,
+      "bathrooms": 2,
+      "length": 6,
+      "width": 7,
+      "popular": true,
+      "image": "/assets/images/house2.jpeg",
+      "type": "house"
+    },
+    {
+      "title": "Fulkaner Ave",
+      "location": "909 wouldland, IN",
+      "price": 7999,
+      "beds": 5,
+      "bathrooms": 3,
+      "length": 7,
+      "width": 7,
+      "popular": true,
+      "image": "/assets/images/house5.jpeg",
+      "type": "house"
+    },
+    {
+      "title": "Hossain Builder",
+      "location": "69 Joshore Road, IN",
+      "price": 2595,
+      "beds": 2,
+      "bathrooms": 2,
+      "length": 4,
+      "width": 7,
+      "popular": true,
+      "image": "/assets/images/house4.jpeg",
+      "type": "room"
+    }
+  ]
+}
