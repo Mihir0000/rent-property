@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { GiKitchenTap } from 'react-icons/gi';
 import { IoBedOutline } from 'react-icons/io5';
@@ -6,13 +6,18 @@ import { RxGroup } from 'react-icons/rx';
 import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
 
 const HouseCard = ({ house }) => {
+  const [like, setLike] = useState(true);
   return (
     <div>
       <Card>
         <Card.Img variant="top" src={house.image} />
         <Card.Body className="position-relative">
-          <div className="position-absolute  end-0 fs-4">
-            <BsSuitHeart /> <BsSuitHeartFill />
+          <div className="position-absolute  end-0 fs-4 me-3 text-danger">
+            {like ? (
+              <BsSuitHeart onClick={() => setLike(!like)} />
+            ) : (
+              <BsSuitHeartFill onClick={() => setLike(!like)} />
+            )}
           </div>
           <Card.Title className="text-primary">
             ${house.price} <span className="cardSpan">/month</span>

@@ -47,6 +47,79 @@
       "popular": true,
       "image": "/assets/images/house4.jpeg",
       "type": "room"
+    },
+    {
+      "title": "Park Avenew",
+      "location": "473 Abhi Road, IN",
+      "price": 999,
+      "beds": 1,
+      "bathrooms": 1,
+      "length": 3,
+      "width": 5,
+      "popular": true,
+      "image": "/assets/images/house10.jpeg",
+      "type": "room"
+    },
+
+    {
+      "title": "New Exchange House",
+      "location": "38 Ab Road, IN",
+      "price": 1930,
+      "beds": 2,
+      "bathrooms": 2,
+      "length": 4,
+      "width": 7,
+      "popular": true,
+      "image": "/assets/images/house9.jpeg",
+      "type": "house"
+    },
+    {
+      "title": "Mihir Extras",
+      "location": "47DN FR Roda, IN",
+      "price": 2295,
+      "beds": 2,
+      "bathrooms": 2,
+      "length": 4,
+      "width": 7,
+      "popular": true,
+      "image": "/assets/images/house1.jpeg",
+      "type": "room"
+    },
+    {
+      "title": "ABC House",
+      "location": "61 BT Road, IN",
+      "price": 3099,
+      "beds": 4,
+      "bathrooms": 2,
+      "length": 4,
+      "width": 10,
+      "popular": true,
+      "image": "/assets/images/house4.jpeg",
+      "type": "house"
+    },
+    {
+      "title": "Twin Tower",
+      "location": "102 Pain Road , IN",
+      "price": 935,
+      "beds": 2,
+      "bathrooms": 2,
+      "length": 4,
+      "width": 5,
+      "popular": true,
+      "image": "/assets/images/house5.jpeg",
+      "type": "house"
+    },
+    {
+      "title": "Exhost Epic Room",
+      "location": "69 Park Street , IN",
+      "price": 4499,
+      "beds": 2,
+      "bathrooms": 2,
+      "length": 4,
+      "width": 7,
+      "popular": true,
+      "image": "/assets/images/house4.jpeg",
+      "type": "room"
     }
   ]
 }

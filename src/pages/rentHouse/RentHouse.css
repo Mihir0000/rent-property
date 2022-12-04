@@ -8,3 +8,12 @@
   font-weight: 300;
   color: black;
 }
+
+.lastCont {
+  min-height: 70vh;
+}
+
+.datePicker {
+  width: 90%;
+  font-size: 15px;
+}

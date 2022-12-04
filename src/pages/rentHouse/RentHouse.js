@@ -1,12 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Col, Container, Dropdown, Row } from 'react-bootstrap';
 import Header from '../../Components/Header/Header';
 import './RentHouse.css';
 import { BiChevronDown } from 'react-icons/bi';
+import { CgCalendarDates } from 'react-icons/cg';
 import HouseCard from '../../Components/HouseCard/HouseCard';
 import HouseData from '../../data.json';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const RentHouse = () => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [price, setPrice] = useState('');
+  const [property, setProperty] = useState('');
+  const [cardData, setCardData] = useState(HouseData.house);
+
+  const priceItem = [
+    {
+      rate: 'Bellow $1000',
+      lowValue: 0,
+      highValue: 1000,
+    },
+    {
+      rate: '$1001 - $2000',
+      lowValue: 1001,
+      highValue: 2000,
+    },
+    {
+      rate: '$2001 - $4000',
+      lowValue: 2001,
+      highValue: 4000,
+    },
+    {
+      rate: 'Above $4000',
+      lowValue: 4000,
+      highValue: 9999999999,
+    },
+  ];
+  const propertyItem = [{ type: 'house' }, { type: 'room' }, { type: 'hotel' }];
+
+  const searchClick = () => {
+    let data = HouseData.house;
+    let maxval = 0,
+      minval = 0;
+    if (price.length > 0) {
+      const priceData = priceItem.filter((i) => i.rate === price);
+      maxval = priceData[0].highValue;
+      minval = priceData[0].lowValue;
+    }
+    if (property.length > 0 && price.length > 0) {
+      let rr = data.filter((i) => i.type === property);
+      const newData = [];
+      for (let i = 0; i < rr.length; i++) {
+        if (rr[i].price >= minval && rr[i].price <= maxval) {
+          newData.push(rr[i]);
+        }
+      }
+      setCardData(newData);
+    } else if (property.length > 0) {
+      let rr = data.filter((i) => i.type === property);
+      setCardData(rr);
+    } else if (price.length > 0) {
+      const newData = [];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].price >= minval && data[i].price <= maxval) {
+          newData.push(data[i]);
+        }
+      }
+      setCardData(newData);
+    }
+  };
   return (
     <>
       <Header />
@@ -36,27 +99,49 @@ const RentHouse = () => {
               <Col className="p-3">
                 <p className="m-0 border-end newFont">When</p>
                 <p className="m-0 border-end">
-                  Select Move-in Date{' '}
-                  <span>
-                    <BiChevronDown />
+                  {/* Select Move-in Date{' '} */}
+                  <span className="d-flex">
+                    <DatePicker
+                      className="datePicker"
+                      selected={startDate}
+                      showTimeSelect
+                      dateFormat="Pp"
+                      onChange={(date) => setStartDate(date)}
+                    />
+                    <CgCalendarDates className="fs-5 align-self-center me-1" />
                   </span>
                 </p>
               </Col>
               <Col className="p-3">
                 <p className="m-0 ms-2 ps-1 border-end newFont">Price</p>
                 <Dropdown className="border-end">
-                  <Dropdown.Toggle
-                    id="dropdown-basic"
-                    className="bg-white text-dark border-0 m-0"
-                  >
-                    Dropdown Button
-                  </Dropdown.Toggle>
+                  {price.length > 0 ? (
+                    <Dropdown.Toggle
+                      id="dropdown-basic"
+                      className="bg-white text-dark border-0 m-0"
+                    >
+                      {price}
+                    </Dropdown.Toggle>
+                  ) : (
+                    <Dropdown.Toggle
+                      id="dropdown-basic"
+                      className="bg-white text-dark border-0 m-0"
+                    >
+                      Select Price
+                    </Dropdown.Toggle>
+                  )}
 
                   <Dropdown.Menu>
-                    <Dropdown.Item>Bellow $1000</Dropdown.Item>
-                    <Dropdown.Item>$1001 - $2000</Dropdown.Item>
-                    <Dropdown.Item>$2001 - $4000</Dropdown.Item>
-                    <Dropdown.Item>Above $4001</Dropdown.Item>
+                    {priceItem.map((item, index) => {
+                      return (
+                        <Dropdown.Item
+                          key={index}
+                          onClick={() => setPrice(item.rate)}
+                        >
+                          {item.rate}
+                        </Dropdown.Item>
+                      );
+                    })}
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>
@@ -65,36 +150,60 @@ const RentHouse = () => {
                   Property Type
                 </p>
                 <Dropdown className="border-end">
-                  <Dropdown.Toggle
-                    id="dropdown-basic"
-                    className="bg-white text-dark border-0 m-0"
-                  >
-                    Dropdown Button
-                  </Dropdown.Toggle>
+                  {property.length > 0 ? (
+                    <Dropdown.Toggle
+                      id="dropdown-basic"
+                      className="bg-white text-dark border-0 m-0 text-capitalize"
+                    >
+                      {property}
+                    </Dropdown.Toggle>
+                  ) : (
+                    <Dropdown.Toggle
+                      id="dropdown-basic"
+                      className="bg-white text-dark border-0 m-0"
+                    >
+                      Select Property
+                    </Dropdown.Toggle>
+                  )}
                   <Dropdown.Menu>
-                    <Dropdown.Item>Action</Dropdown.Item>
-                    <Dropdown.Item>Another action</Dropdown.Item>
-                    <Dropdown.Item>Something else</Dropdown.Item>
+                    {propertyItem.map((item, index) => {
+                      return (
+                        <Dropdown.Item
+                          className="text-capitalize"
+                          key={index}
+                          onClick={() => setProperty(item.type)}
+                        >
+                          {item.type}
+                        </Dropdown.Item>
+                      );
+                    })}
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>
             </Row>
           </Col>
           <Col sm={2} className="text-center m-auto">
-            <Button className="">Search</Button>
+            <Button className="" onClick={searchClick}>
+              Search
+            </Button>
           </Col>
         </Row>
       </Container>
-      <Container>
+      <Container className="lastCont">
         <Row>
-          {HouseData &&
-            HouseData.house.map((item, index) => {
+          {cardData.length > 0 ? (
+            cardData.map((item, index) => {
               return (
                 <Col key={index} sm={4} className="mb-2">
                   <HouseCard house={item} />
                 </Col>
               );
-            })}
+            })
+          ) : (
+            <div>
+              <h3 className="text-center text-warning">Data Not Found</h3>
+            </div>
+          )}
         </Row>
       </Container>
     </>
